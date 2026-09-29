@@ -1,0 +1,40 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "group": "build",
+            "type": "shell",
+            "command": "dotnet run --project src/ElBruno.OllamaMonitor/"
+        },
+        {
+            "label": "CLEANUP",
+            "group": "build",
+            "type": "shell",
+            "command": "./fbt updater_package -c"
+        },
+        {
+            "label": "COMPILE",
+            "group": "build",
+            "type": "shell",
+            "command": "./fbt icons proto dolphin_internal dolphin_blocking dolphin_ext resources"
+        },
+        {
+            "label": "[Release] Build bundle",
+            "group": "build",
+            "type": "shell",
+            "command": "./fbt updater_package"
+        },
+        {
+            "label": "[Release] Build",
+            "group": "build",
+            "type": "shell",
+            "command": "dotnet build src/ElBruno.OllamaMonitor/",
+            "options": {
+                "statusbar": {"hide" : false }}
+        },
+        
+    ]
+}
